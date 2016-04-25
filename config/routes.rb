@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+resources :products, only: [:index, :show]
+
+resources :orders, only: [:show, :create] do
+  resources :payments, only: [:new, :create]
+end
+
   devise_for :users
   root to: 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
